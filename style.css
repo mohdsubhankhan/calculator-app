@@ -1,84 +1,93 @@
-/* Global Styles */
 body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: #f4f4f9;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  /* Calculator Container */
-  .calculator {
-    width: 300px;
-    background: #fff;
+}
+
+.calculator {
+    background: #2f2f2f;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-  }
-  
-  /* Display */
-  .display {
-    background: #222;
-    color: #fff;
-    font-size: 2rem;
-    text-align: right;
     padding: 20px;
-    height: 70px;
-    overflow: hidden;
-    word-wrap: break-word;
-  }
-  
-  /* Buttons */
-  .buttons {
+    width: 300px;
+}
+
+.display input {
+    width: 93%;
+    height: 50px;
+    border: none;
+    background: #171717;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    text-align: right;
+    padding: 10px;
+    color: white;
+}
+
+
+
+.buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    padding: 10px;
-  }
-  
-  .btn {
-    height: 60px;
-    font-size: 1.5rem;
-    color: #222;
-    background: #f4f4f9;
+}
+
+.btn {
+    background: #e5e7eb;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
+    height: 50px;
+    font-size: 1.2em;
     cursor: pointer;
-    transition: background 0.2s ease;
-  }
-  
-  .btn:hover {
-    background: #ddd;
-  }
-  
-  .operator {
-    background: #ff9800;
+}
+
+.btn:hover {
+    background: #d1d5db;
+}
+
+.operator {
+    background: #6366f1;
     color: white;
-  }
-  
-  .operator:hover {
-    background: #e68a00;
-  }
-  
-  .equal {
-    background: #4caf50;
+}
+
+.operator:hover {
+    background: #4f46e5;
+}
+
+.clear {
+    background: #ef4444;
     color: white;
-    grid-column: span 4;
-  }
-  
-  .equal:hover {
-    background: #3e8e41;
-  }
-  
-  /* Clear Button */
-  #clear {
-    background: #f44336;
+}
+
+.clear:hover {
+    background: #dc2626;
+}
+
+.equal {
+    background: #05f9a7;
     color: white;
-  }
-  
-  #clear:hover {
-    background: #e53935;
-  }
-  
+    width: 75%;
+}
+
+.backspace{
+    width: 23%;
+}
+
+.equal:hover {
+    background: #04d69f;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.twoButtons{
+    display: flex;
+    padding-top: 10px;
+    gap: 10px;
+}
