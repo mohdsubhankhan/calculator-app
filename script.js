@@ -1,74 +1,72 @@
-// Select elements
-const display = document.getElementById('display');
-const buttons = document.querySelectorAll('.btn');
-const equals = document.getElementById('equals');
-const clear = document.getElementById('clear');
+let expression = ""; // To store the entire expression
 
-// Variables to store calculations
-let currentValue = '';
-let previousValue = '';
-let operator = '';
-
-// Update the display
-function updateDisplay(value) {
-  display.textContent = value || '0';
+// Function to append numbers to the display
+function appendNumber(number) {
+  expression += number;
+  updateDisplay();
 }
 
-// Handle button click
-buttons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const value = button.getAttribute('data-value');
+// Function to append operators to the display
+function appendOperator(operator) {
+  // Prevent adding multiple consecutive operators
+  if (expression === "" || /[+\-*/.]$/.test(expression)) return;
 
-    if (!value) return;
+  expression += operator;
+  updateDisplay();
+}
 
-    if (!isNaN(value) || value === '.') {
-      // Append numbers and decimal points
-      currentValue += value;
-      updateDisplay(currentValue);
-    } else {
-      // Operator button clicked
-      if (currentValue) {
-        previousValue = currentValue;
-        currentValue = '';
-      }
-      operator = value;
-    }
-  });
-});
+// Function to clear the display
+function clearDisplay() {
+  expression = "";
+  updateDisplay();
+}
 
-// Handle equals button
-equals.addEventListener('click', () => {
-  if (previousValue && currentValue && operator) {
-    const num1 = parseFloat(previousValue);
-    const num2 = parseFloat(currentValue);
+// Function to update the display
+function updateDisplay() {
+  document.getElementById("result").value = expression;
+}
 
-    let result;
-    switch (operator) {
-      case '+':
-        result = num1 + num2;
-        break;
-      case '-':
-        result = num1 - num2;
-        break;
-      case '*':
-        result = num1 * num2;
-        break;
-      case '/':
-        result = num1 / num2;
-        break;
-    }
-
-    currentValue = result.toString();
-    operator = '';
-    previousValue = '';
-    updateDisplay(currentValue);
+// Function to calculate the result
+function calculate() {
+  try {
+    // Replace the × and ÷ symbols with * and / for evaluation
+    const sanitizedExpression = expression.replace(/×/g, "*").replace(/÷/g, "/");
+    
+    // Use eval to calculate the result
+    const result = eval(sanitizedExpression);
+    
+    // Update the expression with the result
+    expression = result.toString();
+    updateDisplay();
+  } catch (error) {
+    // Handle invalid expressions
+    alert("Invalid Expression!");
   }
-});
+}
 
-// Handle clear button
-clear.addEventListener('click', () => {
-  currentValue = '';
-  previousValue = '';
-  operator = '';
-  updateDisplay('0');
-});
+// Function to delete the last character
+function appendNumber(number) {
+    document.getElementById('result').value += number;
+}
+
+function appendOperator(operator) {
+    document.getElementById('result').value += operator;
+}
+
+function clearDisplay() {
+    document.getElementById('result').value = '';
+}
+
+function backspace() {
+    let display = document.getElementById('result');
+    display.value = display.value.slice(0, -1);
+}
+
+function calculate() {
+    try {
+        let display = document.getElementById('result');
+        display.value = eval(display.value);
+    } catch (e) {
+        alert('Invalid Expression');
+    }
+}
